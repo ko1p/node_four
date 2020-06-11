@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 const { celebrate, Joi, errors } = require('celebrate');
+const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
@@ -23,6 +24,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 mongoose.connect(DATABASE_URL, DATABASE_OPTIONS);
+
+app.use(requestLogger);
 
 app.post('/signin', celebrate({
   body: Joi.object().keys({
@@ -45,6 +48,8 @@ app.use('/users', require('./routes/users'));
 app.use('*', (req, res) => {
   res.status(404).send({ message: 'Запрашиваемый ресурс не найден' });
 });
+
+app.use(errorLogger);
 
 app.use(errors());
 
