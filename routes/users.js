@@ -1,6 +1,6 @@
 const usersRouter = require('express').Router();
-const auth = require('../middlewares/auth');
 const { celebrate, Joi } = require('celebrate');
+const auth = require('../middlewares/auth');
 
 const {
   getAllUsers, getUser, updateUserProfile, updateUserAvatar,
