@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
+const { celebrate, Joi, errors } = require('celebrate');
 
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
@@ -23,14 +24,29 @@ app.use(cookieParser());
 
 mongoose.connect(DATABASE_URL, DATABASE_OPTIONS);
 
-app.post('/signin', login);
-app.post('/signup', createUser);
+app.post('/signin', celebrate({
+  body: Joi.object().keys({
+    email: Joi.string().required().email(),
+    password: Joi.string().required(),
+  }),
+}), login);
+app.post('/signup', celebrate({
+  body: Joi.object().keys({
+    name: Joi.string().required().min(2).max(30),
+    email: Joi.string().required().email(),
+    password: Joi.string().required(),
+    about: Joi.string().required().min(2).max(30),
+    avatar: Joi.string().required(),
+  }),
+}), createUser);
 app.use('/cards', require('./routes/cards'));
 app.use('/users', require('./routes/users'));
 
 app.use('*', (req, res) => {
   res.status(404).send({ message: 'Запрашиваемый ресурс не найден' });
 });
+
+app.use(errors());
 
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
