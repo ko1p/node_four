@@ -1,11 +1,11 @@
 {
   "name": "node_four",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "My fourth node.js project",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js NODE_ENV===production",
-    "dev": "nodemon app.js",
+    "start": "node app.js NODE_ENV=production",
+    "dev": "nodemon app.js scross",
     "test": "jest"
   },
   "author": "Anton Belko",
