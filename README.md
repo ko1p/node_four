@@ -2,7 +2,7 @@
 
 Ссылка на проект: [node.projectFour](https://github.com/ko1p/node_four "REST API проекта Mesto")
 
-Текущая версия: **v0.0.2**
+Текущая версия: **v0.0.3**
 
 ## Что это за проект?
 
