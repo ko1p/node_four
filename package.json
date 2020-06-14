@@ -1,6 +1,6 @@
 {
   "name": "node_four",
-  "version": "0.0.3git ",
+  "version": "0.0.3",
   "description": "My fourth node.js project",
   "main": "app.js",
   "scripts": {

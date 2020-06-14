@@ -2,6 +2,7 @@ const cardsRouter = require('express').Router();
 const { celebrate, Joi } = require('celebrate');
 const auth = require('../middlewares/auth');
 const urlValidation = require('../local_modules/urlValidation');
+const idValidationProps = require('../local_modules/idValidationProps');
 
 const {
   getAllCards, createCard, deleteCard, likeCard, dislikeCard,
@@ -15,20 +16,11 @@ cardsRouter.post('/', celebrate({
   }),
 }),
 auth, createCard);
-cardsRouter.delete('/:cardId', celebrate({
-  params: Joi.object().keys({
-    cardId: Joi.string().alphanum().length(24),
-  }),
-}), auth, deleteCard);
-cardsRouter.put('/:cardId/likes', celebrate({
-  params: Joi.object().keys({
-    cardId: Joi.string().alphanum().length(24),
-  }),
-}), auth, likeCard);
-cardsRouter.delete('/:cardId/likes', celebrate({
-  params: Joi.object().keys({
-    cardId: Joi.string().alphanum().length(24),
-  }),
-}), auth, dislikeCard);
+cardsRouter.delete('/:id', celebrate(idValidationProps),
+  auth, deleteCard);
+cardsRouter.put('/:id/likes', celebrate(idValidationProps),
+  auth, likeCard);
+cardsRouter.delete('/:id/likes', celebrate(idValidationProps),
+  auth, dislikeCard);
 
 module.exports = cardsRouter;
