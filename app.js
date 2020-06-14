@@ -6,6 +6,7 @@ const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 const { celebrate, Joi, errors } = require('celebrate');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
+const urlValidation = require('./local_modules/urlValidation');
 
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
@@ -45,7 +46,7 @@ app.post('/signup', celebrate({
     email: Joi.string().required().email(),
     password: Joi.string().required(),
     about: Joi.string().required().min(2).max(30),
-    avatar: Joi.string().required(),
+    avatar: Joi.string().required().custom(urlValidation, 'custom URL validation'),
   }),
 }), createUser);
 app.use('/cards', require('./routes/cards'));
