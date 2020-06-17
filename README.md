@@ -1,18 +1,36 @@
-## node.projectThree
+## node.projectFour
 
-Ссылка на проект: [node.projectThree](https://github.com/ko1p/node_three "REST API проекта Mesto")
+Ссылка на проект: [node.projectFour](https://github.com/ko1p/node_four "REST API проекта Mesto")
 
-Текущая версия: **v0.0.4**
+Текущая версия: **v0.0.3**
 
 ## Что это за проект?
 
-Выполняю задание по созданию и подключию REST API проекта Mesto к базе данных MongoDB. В данном проекте настраиваю идентификацию, аутентификацию и авторизацию .:floppy_disk:
+Выполняю задание по созданию REST API проекта Mesto. В данном проекте валидирую запросы на сервер, делаю логирование ошибок и запросов, создаю и настраиваю облачный сервер Яндекс.Облако, подключаю свой домен, выпускаю сертификаты для работы по HTTPS  .:floppy_disk:
+
+## Ссылки:
+
+Фронтенд проекта:
+
+`mestoapp.cf`
+
+`www.mestoapp.cf`
+
+Бэкенд проекта:
+
+`api.mestoapp.cf`
+
+`www.api.mestoapp.cf`
+
+`84.201.165.252`
+
+***Доступ возможен по протоколам http и https, лицензия - Let's Encrypt.***
 
 ## Запуск и настройка:
 
 #### Клонируем приложение:
 
-    https://github.com/ko1p/node_three.git
+    https://github.com/ko1p/node_four.git
 
 #### Настройка:
 
@@ -117,3 +135,6 @@ _mongodb://localhost:27017/mestodb_
 - jsonwebtoken
 - bcryptjs
 - validator
+- cookieParser
+- rateLimit
+- celebrate
