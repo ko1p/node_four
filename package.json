@@ -15,7 +15,7 @@
     "eslint-config-airbnb-base": "^14.1.0",
     "eslint-plugin-import": "^2.20.2",
     "jest": "^29.7.0",
-    "nodemon": "^2.0.20"
+    "nodemon": "^3.1.10"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
